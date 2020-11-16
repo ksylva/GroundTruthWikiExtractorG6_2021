@@ -1,0 +1,24 @@
+Unnamed: 0,Unnamed: 1,Unnamed: 2,Relative and interrogative,Relative and interrogative.1,Demonstrative,Demonstrative.1,Indeterminate,Indeterminate.1,Most Indeterminate,Negative,Negative.1,Collective,Collective.1
+,,,Esperanto,Ido,Esperanto,Ido,Esperanto,Ido,Ido,Esperanto,Ido,Esperanto,Ido
+,,,ki-,"qua, ∅",ti-,"ita, ∅",i-,"ula, ∅",irga,neni-,nula,ĉi-,omna
+Individual,Esperanto,-u,kiu,kiu,tiu,tiu,iu,iu,iu,neniu,neniu,ĉiu,ĉiu
+Individual,Ido,-u,qua,qua,ita,ita,ulu,ulu,irgu,nulu,nulu,omnu,omnu
+Thing,Esperanto,-o,kio,kio,tio,tio,io,io,io,nenio,nenio,ĉio,ĉio
+Thing,Ido,-o,quo,quo,ito,ito,ulo,ulo,irgo,nulo,nulo,omno,omno
+Plural,Esperanto,-j,kiuj/kioj,kiuj/kioj,tiuj/tioj,tiuj/tioj,iuj/ioj,iuj/ioj,iuj/ioj,neniuj/nenioj,neniuj/nenioj,ĉiuj/ĉioj,ĉiuj/ĉioj
+Plural,Ido,-i,qui,qui,iti,iti,uli,uli,irgi,nuli,nuli,omni,omni
+Adjective,Ido,-a,qua,qua,ita,ita,ula,ula,irga,nula,nula,omna,omna
+Motive,Esperanto,-al,kial,kial,tial,tial,ial,ial,ial,nenial,nenial,ĉial,ĉial
+Motive,Ido,pro,pro quo,pro quo,pro to,pro to,pro ulo,pro ulo,pro irgo,pro nulo,pro nulo,pro omno,pro omno
+Association,Esperanto,-es,kies,kies,ties,ties,ies,ies,,nenies,nenies,ĉies,ĉies
+Association,Ido,di,di quo,di quo,di to,di to,di ulo,di ulo,di irgo,di nulo,di nulo,di omno,di omno
+Place,Esperanto,-e,kie,kie,tie,tie,ie,ie,ie,nenie,nenie,ĉie,ĉie
+Place,Ido,loke,ube,ube,ibe,ibe,ulaloke,ulaloke,irgaloke,nulaloke,nulaloke,omnaloke,omnaloke
+Time,Esperanto,-am,kiam,kiam,tiam,tiam,iam,iam,iam,neniam,neniam,ĉiam,ĉiam
+Time,Ido,tempe,kande,kande,lore,lore,ulatempe,ulatempe,irgatempe,nulatempe,nulatempe,"omnatempe, sempre","omnatempe, sempre"
+Quality,Esperanto,-a,kia,kia,tia,tia,ia,ia,ia,nenia,nenia,ĉia,ĉia
+Quality,Ido,"-a, speca",quala,quala,tala,tala,ulaspeca,ulaspeca,irgaspeca,nulaspeca,nulaspeca,omnaspeca,omnaspeca
+Manner,Esperanto,-el,kiel,kiel,tiel,tiel,iel,iel,iel,neniel,neniel,ĉiel,ĉiel
+Manner,Ido,"-e, maniere",quale,quale,tale,tale,"ule, ulamaniere","ule, ulamaniere","irge, irgamaniere","nule, nulamaniere","nule, nulamaniere","omne, omnamaniere","omne, omnamaniere"
+Quantity – adjective,Esperanto,-om,kiom,kiom,tiom,tiom,iom,iom,iom,neniom,neniom,ĉiom,ĉiom
+Quantity – adjective,Ido,quanta,quanta,quanta,tanta,tanta,kelka,kelka,irgaquanta,nulaquanta,nulaquanta,omnaquanta,omnaquanta
