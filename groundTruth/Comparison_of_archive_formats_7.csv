@@ -1,0 +1,20 @@
+Archive format,Built-in compression,Self-extracting,Directory structure,POSIX attributes (page does not exist),Access Control List,Alternate data streams
+Cpio,No1,No,Yes,Yes,No,?
+Tar (file format),No1,No,Yes,Yes,Some,(in Solaris implementation)
+DAR (Disk Archiver),Yes3,No,Yes,Yes,Yes,Yes
+Ar (Unix),No,No,No,Yes,No,?
+Pax (command),No,No,Yes,Yes,Yes,?
+Dump (program),No1,No,Yes,Yes,Yes,?
+Shar,No,Yes,Yes,Yes,No,?
+makeself,Yes,Yes,Yes,Yes,Yes,?
+Zip (file format),Yes,Yes2,Yes,No,?,?
+RAR (file format),Yes,Yes2,Yes,No,?,Yes
+ACE (compression file format),Yes,?,Yes,No,?,?
+Arj,Yes,Yes2,Yes,No,No,?
+Zoo (file format),Yes,?,Yes,No,?,?
+ISO 9660 (CD-ROM),No1,No,Yes,(with Rock Ridge extension),No,?
+Cabinet (file format),Yes,Yes2,?,No,?,?
+RPM Package Manager,Yes,No,Yes,Yes,?,?
+Deb (file format),Yes,No,Yes,Yes,?,?
+7z (file format),Yes,Yes,Yes,Yes,?,?
+Archive format,Built-in compression,Self-extracting,Directory Structure,POSIX attributes (page does not exist),Access Control List,Alternate data streams

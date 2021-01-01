@@ -1,0 +1,11 @@
+Name,First release,Description,Programming language,Operating system,Memory protection?,Program animation?,Software license,Most recent release
+Advanced Debugger,1977,Unix standard debugger,Any compiled to Machine code,Unix,No,?,Proprietary software,2000?
+Allinea Distributed Debugging Tool,2002,Allinea Distributed Debugging Tool Debugger,Any compiled to Machine code,Linux,Offers guard page for memory usage bugs,Yes,Proprietary software," 5.1, Aug 2015 "
+GNU Debugger,1986,GNU Debugger,Any compiled to Machine code," Unix-like systems, Unix-like ",No,Yes,GPL," 9.1, Feb 2020 "
+Intel Debugger,2012,Intel Debugger,Any compiled to Machine code," Microsoft Windows, Microsoft Windows, Microsoft Windows ",No,?,Proprietary software," 13.0.1, 2013 "
+LLDB (debugger),2003?,LLVM Debugger,Any compiled to Machine code," MacOS i386 and x86-64, MacOS, MacOS, MacOS support is coming soon ",No,?,University of Illinois/NCSA Open Source License," 3.5.0, Sep 2014 "
+Modular Debugger,1999,Solaris (operating system) standard debugger (adb) successor,Any compiled to Machine code,Solaris (operating system),Yes (Memory debugger),?,CDDL,2016
+Rogue Wave Software,1998,Source code and memory serial and parallel debugger," C++, C, CUDA, FORTRAN, MPI, OpenMP "," Linux, Linux, Linux, Linux, Linux, LinuxLinux ",Yes (Memory debugger),Yes,Proprietary software," 2016.07, Nov 2016 "
+Valgrind,2007?,tool suite for debugging and profiling Linux programs[2]," C, C++, Java, Perl, Python, assembly code, Fortran, Ada, ... "," Linux, Darwin (Mac OS X), Android ",Yes,?,GPL," 3.10.1, Nov 2014 "
+Microsoft Visual Studio Debugger,1995,Debugger in Microsoft Visual Studio," C++, JavaScript, .net languages "," Windows 7, Windows Server 2008 R2, Windows 8, Windows Server 2012, Windows 8.1, Windows Server 2012 R2[4], Windows 10, Windows Server 2016 "," Yes,(Managed code) ",Yes,Proprietary software," March 7, 2017 "
+XPEDITER,1980?,family of Mainframe debuggers," COBOL, COBOL &amp; COBOL ",Z/OS,Yes (CICS),Yes,Proprietary software," z2.1, Oct 2014 "
