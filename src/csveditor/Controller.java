@@ -165,9 +165,6 @@ public class Controller {
         //btnExtract.setDisable(false);
     }
 
-
-
-
     /**
      * Run extraction
      */
@@ -207,20 +204,6 @@ public class Controller {
             };
         }
     }
-
-    /*private void confirmDialog(){
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation");
-        alert.setHeaderText("Enregistrement du fichier");
-        alert.setContentText("Le contenu du tableau va être enregistrer. \nÊtes-vous sûre ?");
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.isPresent() && (result.get() == ButtonType.OK)){
-            saveCsv();
-        } else {
-            alert.close();
-        }
-    }*/
 
     /**
      * Read csv file and write his contents in tableView
@@ -403,21 +386,6 @@ public class Controller {
                 while (process.isAlive()) {
                 }
                 processExtraction();
-                /*int numberOfTables = 0;
-                //See in the right folder to count number of tables
-                if (extrChoice.getValue().equals(javaHtml)){
-                    numberOfTables = numberOfJavaTables("html");
-                }else if(extrChoice.getValue().equals(javaWikitext)){
-                    numberOfTables = numberOfJavaTables("wikitext");
-                }
-
-                List<Integer> list = new ArrayList<>();
-                for (int i = 1; i <= numberOfTables; i++) {
-                    list.add(i);
-                }
-                tableNumber = FXCollections.observableArrayList(list);
-                numTable.setItems(tableNumber);*/
-            /*} else if (extrChoice.getValue().equals(javaWikitext)) {*/
             } else if (extrChoice.getValue().equals(python)) {
                 System.out.println("Extracteur python");
             }
