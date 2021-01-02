@@ -384,8 +384,9 @@ public class Controller {
                 System.out.println("Extracteur python");
             }
         } else { // Windows OS
+            String path = "\""+this.javaExtractorFolder+this.javaWinScript+"\"";
             if (extrChoice.getValue().contains("Java")) {
-                process = runtime.exec("cmd.exe /C " + this.javaExtractorFolder + this.javaWinScript);
+                process = runtime.exec("cmd.exe /C " + path);
                 executionTrace(process);
 
                 while (process.isAlive()){}
