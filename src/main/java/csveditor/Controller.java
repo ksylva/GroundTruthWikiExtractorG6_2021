@@ -75,8 +75,6 @@ public class Controller {
         btnExtract.setDisable(true);
         btnRegister.setDisable(true);
 
-        //csvViewer.getItems().addAll(dataList);
-        //System.out.println("Extracteur : "+extrChoice.getValue());
         numTable.getSelectionModel().selectedItemProperty().addListener(
                 new ChangeListener<Integer>() {
                     @Override
@@ -156,7 +154,6 @@ public class Controller {
                         }
                     }
                 });
-        //btnExtract.setDisable(false);
     }
 
     /**
@@ -238,16 +235,13 @@ public class Controller {
 
             for (String[] value: csvData) {
                 Map<String, String> row = new HashMap<>();
-                //String[] value = csvData.get(line);
-                //System.out.println("Line : "+ Arrays.toString(value));
+
                 for (int cols = 0; cols < value.length; cols++) {
                     row.put("Column "+cols, value[cols]);
-
-                }//System.out.println("Map: "+row);
+                }
                 dataList.add(row);
             }
             csvViewer.setEditable(true);
-            //csvViewer.getItems().clear();
             csvViewer.setItems(dataList);
 
             btnRegister.setDisable(false);
@@ -261,8 +255,6 @@ public class Controller {
      */
     private void saveCsv(){
         try(
-                //FileWriter writer = new FileWriter(new File(groundTruthFolder+fileName));
-
                 Writer writer = Files.newBufferedWriter(Paths.get(groundTruthFolder+fileName));
                 CSVWriter csvWriter = new CSVWriter(writer,
                         CSVWriter.DEFAULT_SEPARATOR,
@@ -279,15 +271,7 @@ public class Controller {
                     if (values[j].contains(",")){ // Escape comma character
                         values[j] = "\""+values[j]+"\"";
                     }
-                        /*if (j == contents.size() - 1) { // Case it's the last column
-                            writer.write(values[j]);
-                        }else { // Adding separator
-                            writer.write(values[j]+separator);
-                        }*/
-
                 }
-                //writer.write(System.lineSeparator());
-                //tableData.add(values);
                 csvWriter.writeNext(values);
             }
         } catch (IOException e) {
@@ -308,8 +292,6 @@ public class Controller {
             int begin = s.lastIndexOf("_");
             int end = s.indexOf(".");
             int numFile = Integer.parseInt(s.substring(begin + 1, end));
-
-            //System.out.println("Begin: " + begin + " end: " + end + " numFile: " + numFile);
 
             if (numFile == fileNumber) {
                 return s;
@@ -421,7 +403,7 @@ public class Controller {
      */
     private String detectOS(){
         String os = System.getProperty("os.name");
-        //System.out.println("L'os est : "+ os);
+
         return os;
     }
 
