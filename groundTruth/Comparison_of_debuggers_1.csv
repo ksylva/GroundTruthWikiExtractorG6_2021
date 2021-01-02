@@ -1,5 +1,5 @@
 Name,First release,Description,Programming language,Operating system,Memory protection?,Program animation?,Software license,Most recent release
-Advanced Debugger,1977,Unix standard debugger,Any compiled to Machine code,Unix,No,?,Proprietary software,2000?
+Advanced Debugger,1977,Unix standard debugger,Any compiled to Machine code,Unix,No,?,Proprietary software,
 Allinea Distributed Debugging Tool,2002,Allinea Distributed Debugging Tool Debugger,Any compiled to Machine code,Linux,Offers guard page for memory usage bugs,Yes,Proprietary software," 5.1, Aug 2015 "
 GNU Debugger,1986,GNU Debugger,Any compiled to Machine code," Unix-like systems, Unix-like ",No,Yes,GPL," 9.1, Feb 2020 "
 Intel Debugger,2012,Intel Debugger,Any compiled to Machine code," Microsoft Windows, Microsoft Windows, Microsoft Windows ",No,?,Proprietary software," 13.0.1, 2013 "
