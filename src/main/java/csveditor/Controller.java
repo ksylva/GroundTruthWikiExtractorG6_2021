@@ -45,12 +45,18 @@ public class Controller {
     private final String javaExtractorFolder = System.getProperty("user.dir") +
             File.separator + "javaExtractor" + File.separator;
     private final String javaExtractorOutput = javaExtractorFolder +
-            File.separator + "output" + File.separator;
+            "output" + File.separator;
     private final String groundTruthFolder = System.getProperty("user.dir")+
             File.separator + "groundTruth" + File.separator;
+    private final String pythonExtractorFolder = System.getProperty("user.dir")+
+            File.separator+"pythonExtractor"+File.separator;
+    private final String pythonExtractorOutput = pythonExtractorFolder+
+            "output"+File.separator;
 
     private final String javaScript = "java_script.sh";
     private final String javaWinScript = "java_script.bat";
+    private final String pythonScript = "python_extractor.sh";
+    private final String pythonWinScript = "python_extractor.bat";
 
     private String choicedExtractor;
 
@@ -80,9 +86,9 @@ public class Controller {
                     @Override
                     public void changed(ObservableValue<? extends Integer> observableValue, Integer oldValue, Integer newValue) {
                         if (newValue != null) {
-                            System.out.println("Number is changed");
+                            //System.out.println("Number is changed");
                             fileName = fetchFile(newValue);
-                            System.out.println("The file name : " + fileName);
+                            //System.out.println("The file name : " + fileName);
                             csvViewer.getColumns().clear();
                             csvViewer.getItems().clear();
                             csvReader(fileName);
@@ -163,8 +169,11 @@ public class Controller {
         if ((!wikiUrl.getText().isEmpty() && !wikiUrl.getText().isBlank()) &&
                 extrChoice.getValue() != null) {
             String pageTile = wikiUrl.getText().trim();
-            //System.out.println("Extracteur : "+extrChoice.getValue());
-            deleteFiles(javaExtractorOutput);
+            if (extrChoice.getValue().contains("Java")) {
+                deleteFiles(javaExtractorOutput);
+            }else {
+                deleteFiles(pythonExtractorOutput);
+            }
             System.out.println("Fin de la suppression");
 
             choicedExtractor = extractor(extrChoice.getValue());
@@ -173,7 +182,7 @@ public class Controller {
                 writeInFile(pageTile);
 
                 // Run java extractor since bash script
-                this.runJavaExtractor();
+                this.runExtractor();
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -201,10 +210,17 @@ public class Controller {
      * @param csvFile csv file to read
      */
     private void csvReader(String csvFile) {
-        try (
-                Reader reader = Files.newBufferedReader(Paths.get(javaExtractorOutput + choicedExtractor + csvFile));
-                CSVReader csvReader = new CSVReader(reader);
-        ) {
+        try {
+            Reader reader;
+
+            if (extrChoice.getValue().equals(javaHtml) ||
+                    extrChoice.getValue().equals(javaWikitext)){
+                reader = Files.newBufferedReader(Paths.get(javaExtractorOutput + choicedExtractor + csvFile));
+            }else { // Case extractor is python
+                reader = Files.newBufferedReader(Paths.get(pythonExtractorOutput + csvFile));
+            }
+
+            CSVReader csvReader = new CSVReader(reader);
             List<String[]> csvData = csvReader.readAll();
             numberOfLineInCsvFile = csvData.size();
             maxColumns = 0;
@@ -262,7 +278,7 @@ public class Controller {
                         CSVWriter.NO_ESCAPE_CHARACTER,
                         CSVWriter.DEFAULT_LINE_END);
         ) {
-            System.out.println("File path: "+groundTruthFolder+fileName);
+            //System.out.println("File path: "+groundTruthFolder+fileName);
             for (int i = 0; i < numberOfLineInCsvFile; i++) {
                 HashMap contents = (HashMap) csvViewer.getItems().get(i);
                 String[] values = new String[contents.size()];
@@ -285,7 +301,15 @@ public class Controller {
      * @return csv file name
      */
     private String fetchFile(int fileNumber) {
-        File file = new File(javaExtractorOutput + choicedExtractor + File.separator);
+        File file;
+
+        if (extrChoice.getValue().equals(javaHtml) ||
+                extrChoice.getValue().equals(javaWikitext)){
+            file = new File(javaExtractorOutput + choicedExtractor + File.separator);
+        }else { // Case extractor is python
+           file = new File(pythonExtractorOutput + File.separator);
+        }
+
         String[] list = file.list();
 
         for (String s : list) {
@@ -330,7 +354,14 @@ public class Controller {
      * @throws IOException exception
      */
     private void writeInFile(String fileName) throws IOException {
-        File file = new File(this.javaExtractorFolder + "wikiurls.txt");
+        File file;
+
+        if (extrChoice.getValue().equals(javaHtml) ||
+                extrChoice.getValue().equals(javaWikitext)){
+            file = new File(this.javaExtractorFolder + "wikiurls.txt");
+        }else { // Case extractor is python
+            file = new File(pythonExtractorFolder + "wikiurls.txt");
+        }
 
         if (fileName.contains("https://")){
             int lastSlash = fileName.lastIndexOf("/");
@@ -348,7 +379,7 @@ public class Controller {
      *
      * @throws IOException exception
      */
-    private void runJavaExtractor() throws IOException {
+    private void runExtractor() throws IOException {
         Runtime runtime = Runtime.getRuntime();
 
         Process process;
@@ -362,31 +393,47 @@ public class Controller {
                 while (process.isAlive()) {
                 }
                 processExtraction();
-            } else if (extrChoice.getValue().equals(python)) {
-                System.out.println("Extracteur python");
+            } else {// Case it's python
+                //System.out.println("Extracteur python");
+                process = runtime.exec(this.pythonExtractorFolder+this.pythonScript);
+                executionTrace(process);
+                while (process.isAlive()){}
+                processExtraction();
             }
         } else { // Windows OS
-            String path = "\""+this.javaExtractorFolder+this.javaWinScript+"\"";
+
             if (extrChoice.getValue().contains("Java")) {
+                String path = "\""+this.javaExtractorFolder+this.javaWinScript+"\"";
                 process = runtime.exec("cmd.exe /C " + path);
                 executionTrace(process);
 
                 while (process.isAlive()){}
                 processExtraction();
 
-            }else if (extrChoice.getValue().equals(python)){
-                System.out.println("Python extractor");
+            }else { //Case python selected
+                String path = "\""+this.pythonExtractorFolder+this.pythonWinScript+"\"";
+                //System.out.println("Python extractor");
+                process = runtime.exec("cmd.exe /C " + path);
+                executionTrace(process);
+
+                while (process.isAlive()){}
+                processExtraction();
             }
         }
     }
 
+    /**
+     * Fill the list of number of tables extracted
+     */
     private void processExtraction(){
         int numberOfTables = 0;
         //See in the right folder to count number of tables
         if (extrChoice.getValue().equals(javaHtml)){
-            numberOfTables = numberOfJavaTables("html");
+            numberOfTables = numberOfTables("html");
         }else if(extrChoice.getValue().equals(javaWikitext)){
-            numberOfTables = numberOfJavaTables("wikitext");
+            numberOfTables = numberOfTables("wikitext");
+        }else {
+            numberOfTables = numberOfTables("output");
         }
 
         List<Integer> list = new ArrayList<>();
@@ -402,9 +449,7 @@ public class Controller {
      * @return the OS name
      */
     private String detectOS(){
-        String os = System.getProperty("os.name");
-
-        return os;
+        return System.getProperty("os.name");
     }
 
     /**
@@ -412,8 +457,16 @@ public class Controller {
      * @param folder the destination folder of extracted files
      * @return the number of tables
      */
-    public int numberOfJavaTables(String folder){
-        String path = this.javaExtractorOutput+folder+File.separator;
+    public int numberOfTables(String folder){
+        String path;
+
+        if (extrChoice.getValue().equals(javaHtml) ||
+                extrChoice.getValue().equals(javaWikitext)){
+            path = this.javaExtractorOutput+folder+File.separator;
+        }else { // Case extractor is python
+            path = this.pythonExtractorFolder+folder+File.separator;
+        }
+
         File file = new File(path);
 
         String[] numberOfFiles = file.list();
@@ -427,26 +480,34 @@ public class Controller {
 
     /**
      * Delete old extracted files
-     * @param javaFolder path of folder
+     * @param outputFolder path of folder
      */
-    private static void deleteFiles(String javaFolder){
-        String htmlPath = javaFolder+File.separator+"html"+File.separator;
-        String wikiPath = javaFolder+File.separator+"wikitext"+File.separator;
-        File htmlFile = new File(htmlPath);
-        File wikiFile = new File(wikiPath);
-        File[] htmlContents = htmlFile.listFiles();
-        File[] wikiContents = wikiFile.listFiles();
+    private void deleteFiles(String outputFolder){
+        if (outputFolder.equals(javaExtractorOutput)) {
+            String htmlPath = outputFolder + "html" + File.separator;
+            String wikiPath = outputFolder + "wikitext" + File.separator;
+            File htmlFile = new File(htmlPath);
+            File wikiFile = new File(wikiPath);
 
-        // Empty the html folder
-        if (htmlContents != null) {
-            for (File file: htmlContents){
-                file.delete();
+            // Empty the html folder
+            if (htmlFile.exists()) {
+                for (File file : Objects.requireNonNull(htmlFile.listFiles())) {
+                    file.delete();
+                }
             }
-        }
-        // Empty the wikitext folder...
-        if (wikiContents != null){
-            for (File file : wikiContents){
-                file.delete();
+            // Empty the wikitext folder...
+            if (wikiFile.exists()) {
+                for (File file : Objects.requireNonNull(wikiFile.listFiles())) {
+                    file.delete();
+                }
+            }
+        }else { // Case extractor is python
+            File pyFile = new File(pythonExtractorOutput);
+            // Empty the html folder
+            if (pyFile.exists()) {
+                for (File file : pyFile.listFiles()) {
+                    file.delete();
+                }
             }
         }
     }
